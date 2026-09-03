@@ -49,6 +49,11 @@ public class StringManipulator
             throw new ArgumentException("Input string cannot be null or empty.");
         }
 
+        if (!input.Any(char.IsLetter)) //ensures there is at least one valid letter provided
+        {
+            throw new ArgumentException("Input string must contain at least one letter.");
+        }
+
         var earliestLetter = input.Where(char.IsLetter) //ignores non-letter characters
                 .Min(char.ToLowerInvariant);
 
@@ -68,6 +73,6 @@ public class StringManipulator
                                         || char.ToUpperInvariant(x) == 'O'
                                         || char.ToUpperInvariant(x) == 'U');
 
-        return vowelCount % 2 == 0 ? "rent" : "open";
+        return vowelCount % 2 == 0 ? "rent" : "open"; //I am classing 0 as even, i.e. rent will be returned in cases with no vowels
     }
 }
